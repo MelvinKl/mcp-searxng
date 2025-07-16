@@ -1,0 +1,37 @@
+name: Linting and Formatting Check
+on:
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch:
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'  # Specify the Python version you want to use
+
+      # Step 3: Install Poetry
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      # Step 4: Install dependencies using Poetry
+      - name: Install dependencies
+        run: |
+          poetry install --with dev --no-root
+
+      # Step 5: Run flake8 for linting/formatting checks
+      - name: Run flake8
+        run: |
+          make lint
