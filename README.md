@@ -10,6 +10,7 @@ The following configuration can be set with env variables:
 |`HOST`|`0.0.0.0`|Address to listen to.|
 |`PORT`|`8080`|Port to listen on.|
 |`TRANSPORT`|`streamable-http`|Transport used by the mcp server. Must be `streamable-http`or `sse`.|
+|`SEARXNG_URL`|-|URL to the searxng server|
 
 # Requirements
 It is recommended to use the provided Dockerimage, which requires only Docker to be installed.
