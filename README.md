@@ -42,6 +42,16 @@ If you want to install from source the following packages are required:
 
 Apache 2
 
+# Testing
+
+To run tests, run the following command:
+
+```bash
+make test
+```
+
+This will run all tests, linting, and formatting checks. Test coverage is tracked and must be at least 80%.
+
 # Acknowledgments
 
 - Built with the [Model Context Protocol](https://modelcontextprotocol.io/)
