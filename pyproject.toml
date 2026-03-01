@@ -18,6 +18,10 @@ dependencies = [
 
 [tool.flake8]
 exclude= ["./src/weather/*", ".eggs", ".git", ".hg", ".mypy_cache", ".tox", ".venv", ".devcontainer", "venv", "_build", "buck-out", "build", "dist", "**/__init__.py"]
+
+
+[tool.pytest.ini_options]
+pythonpath = "src"
 statistics = true
 show-source = false
 max-complexity = 8
