@@ -5,12 +5,9 @@ class SearxngAPI:
     def __init__(self, base_url: str):
         self._base_url = base_url
 
-    def search(
-        self,
-        searchterm:str 
-    ):
+    def search(self, searchterm: str):
         """
-        Searches on the internet for the given searchterm and return the 
+        Searches on the internet for the given searchterm and return the
 
         Parameters
         ----------
