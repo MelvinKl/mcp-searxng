@@ -1,16 +1,24 @@
+"""Tests for searxng_api module."""
+
 import pytest
 import requests
+
 from unittest.mock import Mock, patch
+
 from searxng_api import SearxngAPI
 
 
 class TestSearxngAPI:
+    """Test cases for SearxngAPI class."""
+
     def test_init(self):
+        """Test SearxngAPI initialization."""
         api = SearxngAPI("https://example.com")
         assert api._base_url == "https://example.com"
 
     @patch("searxng_api.requests.get")
     def test_search_success(self, mock_get):
+        """Test successful search request."""
         mock_response = Mock()
         mock_response.json.return_value = {"results": []}
         mock_get.return_value = mock_response
@@ -30,10 +38,9 @@ class TestSearxngAPI:
 
     @patch("searxng_api.requests.get")
     def test_search_with_results(self, mock_get):
+        """Test search with results."""
         mock_response = Mock()
-        mock_response.json.return_value = {
-            "results": [{"title": "Test", "url": "https://test.com"}]
-        }
+        mock_response.json.return_value = {"results": [{"title": "Test", "url": "https://test.com"}]}
         mock_get.return_value = mock_response
 
         api = SearxngAPI("https://example.com")
@@ -44,6 +51,7 @@ class TestSearxngAPI:
 
     @patch("searxng_api.requests.get")
     def test_search_request_exception(self, mock_get):
+        """Test search with request exception."""
         mock_get.side_effect = requests.RequestException("Network error")
 
         api = SearxngAPI("https://example.com")

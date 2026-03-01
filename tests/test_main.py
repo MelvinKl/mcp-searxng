@@ -1,6 +1,9 @@
+"""Tests for main module."""
+
 import os
 import sys
 from unittest.mock import MagicMock, Mock, patch
+
 import pytest
 
 
@@ -30,19 +33,21 @@ def test_initialization():
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
     from main import SearXngMcpServer
 
-    with patch("main.SearxngAPI"):
-        with patch("main.FastMCP"):
-            server = SearXngMcpServer(
-                searxng_url="http://localhost:8080",
-                port=8080,
-                host="0.0.0.0",
-                transport="streamable-http",
-            )
+    with (
+        patch("main.SearxngAPI"),
+        patch("main.FastMCP"),
+    ):
+        server = SearXngMcpServer(
+            searxng_url="http://localhost:8080",
+            port=8080,
+            host="0.0.0.0",
+            transport="streamable-http",
+        )
 
-            assert server._port == 8080
-            assert server._host == "0.0.0.0"
-            assert server._transport == "streamable-http"
-            assert isinstance(server._client, Mock)
+        assert server._port == 8080
+        assert server._host == "0.0.0.0"
+        assert server._transport == "streamable-http"
+        assert isinstance(server._client, Mock)
 
 
 def test_initialization_with_sse():
@@ -50,13 +55,16 @@ def test_initialization_with_sse():
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
     from main import SearXngMcpServer
 
-    with patch("main.SearxngAPI"):
-        with patch("main.FastMCP"):
-            server = SearXngMcpServer(
-                searxng_url="http://localhost:8080", transport="sse"
-            )
+    with (
+        patch("main.SearxngAPI"),
+        patch("main.FastMCP"),
+    ):
+        server = SearXngMcpServer(
+            searxng_url="http://localhost:8080",
+            transport="sse",
+        )
 
-            assert server._transport == "sse"
+        assert server._transport == "sse"
 
 
 def test_start():
