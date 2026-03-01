@@ -1,0 +1,43 @@
+name: Tests and Code Quality
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: |
+          poetry install --with dev --no-root
+
+      - name: Run tests with coverage
+        run: |
+          poetry run pytest --cov=src --cov-report=term --cov-report=xml --cov-report=html tests/
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml
+          fail_ci_if_error: false
+
+      - name: Check coverage threshold
+        run: |
+          poetry run pytest --cov=src --cov-report=term-missing tests/ --cov-fail-under=80
