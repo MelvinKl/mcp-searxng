@@ -12,7 +12,9 @@ logger = logging.getLogger(__name__)
 class SearXngMcpServer:
     """MCP Server that connects to searxng API."""
 
-    def __init__(self, searxng_url: str, port: int = 8080, host: str = "0.0.0.0", transport: str = "streamable-http"):  # noqa: S104
+    def __init__(
+        self, searxng_url: str, port: int = 8080, host: str = "0.0.0.0", transport: str = "streamable-http"
+    ):  # noqa: S104
         self._port = port
         self._host = host
         self._transport = transport
