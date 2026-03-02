@@ -374,20 +374,18 @@ def test_state_transitions_complete():
     def execute_transition(from_state, event):
         """Helper to execute a state transition and return the result."""
         mcp_fsm.state = mcp_fsm.states[from_state]
-        if event == "connect":
-            connect()
-        elif event == "success":
-            success()
-        elif event == "error":
-            error()
-        elif event == "recover":
-            recover()
-        elif event == "reset":
-            reset()
-        elif event == "start":
-            start()
-        elif event == "stop":
-            stop()
+        event_handlers = {
+            "connect": connect,
+            "success": success,
+            "error": error,
+            "recover": recover,
+            "reset": reset,
+            "start": start,
+            "stop": stop,
+        }
+        handler = event_handlers.get(event)
+        if handler:
+            handler()
         return mcp_fsm.state
 
     reset_state()
