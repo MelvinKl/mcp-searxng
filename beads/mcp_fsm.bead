@@ -1,0 +1,14 @@
+#! version:1 language:python file_type:.txt #
+
+IDLE:connect:CONNECTING
+CONNECTING:success:READY
+CONNECTING:error:ERROR
+READY:start:RUNNING
+READY:stop:STOPPED
+READY:error:ERROR
+RUNNING:stop:STOPPED
+RUNNING:error:ERROR
+STOPPED:start:READY
+STOPPED:reset:IDLE
+ERROR:reset:IDLE
+ERROR:recover:READY
