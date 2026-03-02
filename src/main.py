@@ -1,6 +1,8 @@
-import os
+"""MCP Server for SearXNG API."""
+
 import inspect
 import logging
+import os
 
 from fastmcp import FastMCP
 
@@ -10,11 +12,15 @@ logger = logging.getLogger(__name__)
 
 
 class SearXngMcpServer:
-    """MCP Server that connects to searxng API."""
+    """MCP server that connects to searxng API."""
 
-    def __init__(
-        self, searxng_url: str, port: int = 8080, host: str = "0.0.0.0", transport: str = "streamable-http"
-    ):  # noqa: S104
+    def __init__(  # noqa: D107
+        self,
+        searxng_url: str,
+        port: int = 8080,
+        host: str = "0.0.0.0",  # noqa: S104
+        transport: str = "streamable-http",
+    ):
         self._port = port
         self._host = host
         self._transport = transport
@@ -25,7 +31,8 @@ class SearXngMcpServer:
         self._register_tools()
 
     def start(self):
-        logger.info(f"Starting MCP Searxng Server on {self._host}:{self._port} using {self._transport}")
+        """Start the MCP server."""
+        logger.info(f"Starting MCP Searxng Server on {self._host}:{self._port} " f"using {self._transport}")
         self._server.run(
             transport=self._transport,
             host=self._host,
@@ -33,6 +40,7 @@ class SearXngMcpServer:
         )
 
     def _register_tools(self):
+        """Register available tools from the SearxngAPI client."""
         all_members = inspect.getmembers(self._client, inspect.ismethod)
         filtered_members = []
         for x in all_members:
@@ -51,14 +59,18 @@ class SearXngMcpServer:
 
 
 def main():
+    """Main entry point for the MCP server."""
     transport = os.environ.get("TRANSPORT", "streamable-http")
     port = int(os.environ.get("PORT", "8080"))
-    host = os.environ.get("HOST", "0.0.0.0")
-    searxng_url = os.environ.get("SEARXNG_URL", None)
+    host = os.environ.get("HOST", "0.0.0.0")  # noqa: S104
+    searxng_url = os.environ.get("SEARXNG_URL")
     assert searxng_url, "'SEARXNG_URL' not set."
     allowed_transports = ("streamable-http", "sse")
     if transport not in allowed_transports:
-        logger.fatal("Transport type not recognized. Must be one of %s", allowed_transports)
+        logger.fatal(
+            "Transport type not recognized. Must be one of %s",
+            allowed_transports,
+        )
         exit(1)
 
     server = SearXngMcpServer(host=host, port=port, transport=transport, searxng_url=searxng_url)
