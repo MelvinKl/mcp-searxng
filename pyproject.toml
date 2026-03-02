@@ -9,7 +9,7 @@ license = {text = "Apache2"}
 readme = "README.md"
 requires-python = ">=3.13,<4.0"
 dependencies = [
-    "fastmcp (==2.12.3)",
+    "fastmcp==2.14.0",
     "python-dateutil (>=2.9.0.post0,<3.0.0)",
     "urllib3 (>=2.4.0,<3.0.0)",
     "requests (>=2.32.4,<3.0.0)",    
@@ -61,32 +61,40 @@ skip_gitignore = true
 known_local_folder = []
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling>=1.10.0"]
+build-backend = "hatchling.build"
 
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
 
-[tool.poetry.group.dev.dependencies]
-debugpy = "^1.8.14"
-pytest = "^9.0.0"
-coverage = "^7.8.0"
-flake8 = "^7.2.0"
-flake8-black = "^0.4.0"
-flake8-pyproject = "^1.2.3"
-flake8-quotes = "^3.4.0"
-flake8-return = "^1.2.0"
-flake8-annotations-complexity = "^0.1.0"
-flake8-bandit = "^4.1.1"
-flake8-bugbear = "^24.12.12"
-flake8-builtins = "^3.0.0"
-flake8-comprehensions = "^3.15.0"
-flake8-eradicate = "^1.5.0"
-flake8-expression-complexity = "^0.0.11"
-flake8-pytest-style = "^2.1.0"
-pep8-naming = "^0.15.1"
-flake8-eol = "^0.0.8"
-flake8-exceptions = "^0.0.1a0"
-flake8-simplify = "^0.30.0"
-flake8-wot = "^0.2.0"
-flake8-function-order = "^0.0.5"
-flake8-tidy-imports = "^4.10.0"
-black = "^25.1.0"
+[tool.hatch.build.targets.wheel.shared-data]
+"share/" = "share/"
+
+[dependency-groups]
+dev = [
+    "debugpy>=1.8.14",
+    "pytest>=9.0.0",
+    "coverage>=7.8.0",
+    "flake8>=7.2.0",
+    "flake8-black>=0.4.0",
+    "flake8-pyproject>=1.2.3",
+    "flake8-quotes>=3.4.0",
+    "flake8-return>=1.2.0",
+    "flake8-annotations-complexity>=0.1.0",
+    "flake8-bandit>=4.1.1",
+    "flake8-bugbear>=24.12.12",
+    "flake8-builtins>=3.0.0",
+    "flake8-comprehensions>=3.15.0",
+    "flake8-eradicate>=1.5.0",
+    "flake8-expression-complexity>=0.0.11",
+    "flake8-pytest-style>=2.1.0",
+    "pep8-naming>=0.15.1",
+    "flake8-eol>=0.0.8",
+    "flake8-exceptions>=0.0.1a0",
+    "flake8-simplify>=0.30.0",
+    "flake8-wot>=0.2.0",
+    "flake8-function-order>=0.0.5",
+    "flake8-tidy-imports>=4.10.0",
+    "black>=25.1.0",
+    "pytest-cov>=7.0.0",
+]
