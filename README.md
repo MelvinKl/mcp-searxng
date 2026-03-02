@@ -17,7 +17,7 @@ It is recommended to use the provided Dockerimage, which requires only Docker to
 
 If you want to install from source the following packages are required:
 - Python 3.13
-- Poetry
+- uv
 
 # Installation
 ## (Recommended) Using the Dockerimage
@@ -31,11 +31,11 @@ If you want to install from source the following packages are required:
 ```
 2. Install the dependencies
 ```bash
-    poetry install --no-root
+    uv sync
 ```
 3. Runs the server
 ```bash
-    poetry run python src/main.py
+    uv run python src/main.py
 ```
 
 # License
