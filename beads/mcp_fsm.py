@@ -57,6 +57,11 @@ def stop() -> None:
         state = states["STOPPED"]
 
 
+def reset_state() -> None:
+    global state
+    state = states["CONNECTING"]
+
+
 def success() -> None:
     global state
     if state == states["CONNECTING"]:
