@@ -20,16 +20,13 @@ jobs:
         with:
           python-version: '3.13'  # Specify the Python version you want to use
 
-      # Step 3: Install Poetry
-      - name: Install Poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      # Step 3: Install uv
+      - name: Install uv
+        run: pip install uv
 
-      # Step 4: Install dependencies using Poetry
+      # Step 4: Install dependencies using uv
       - name: Install dependencies
-        run: |
-          poetry install --with dev --no-root
+        run: uv sync
 
       # Step 5: Run flake8 for linting/formatting checks
       - name: Run flake8
