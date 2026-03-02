@@ -1,0 +1,12 @@
+state START:
+  on "start" -> RUNNING
+
+state RUNNING:
+  on "stop" -> STOPPED
+  on "error" -> ERROR
+
+state STOPPED:
+  on "restart" -> RUNNING
+
+state ERROR:
+  on "reset" -> START
