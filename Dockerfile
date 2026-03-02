@@ -1,9 +1,9 @@
 FROM python:3.13
 
 WORKDIR /app
-RUN pip install poetry
+RUN pip install uv
 
 COPY . .
-RUN poetry install --no-root
+RUN uv sync --no-dev
 
-CMD [ "poetry", "run", "python", "src/main.py"]
+CMD [ "uv", "run", "python", "src/main.py"]
