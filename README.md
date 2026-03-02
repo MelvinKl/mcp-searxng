@@ -44,13 +44,14 @@ Apache 2
 
 # Testing
 
-To run tests, run the following command:
+To run tests, run the following commands:
 
 ```bash
+make clean
 make test
 ```
 
-This will run all tests, linting, and formatting checks. Test coverage is tracked and must be at least 80%.
+The `make clean` command removes all artifacts from previous build runs. The `make test` command will run all tests, linting, and formatting checks. Test coverage is tracked and must be at least 80%.
 
 # Acknowledgments
 
