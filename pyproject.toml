@@ -18,13 +18,17 @@ dependencies = [
 
 [tool.flake8]
 exclude= ["./src/weather/*", ".eggs", ".git", ".hg", ".mypy_cache", ".tox", ".venv", ".devcontainer", "venv", "_build", "buck-out", "build", "dist", "**/__init__.py"]
+max-line-length = 120
+ignore = ["E203", "W503", "E704", "S104", "S101", "SIM910", "SIM117", "SIM114", "D100", "D101", "D102", "D103", "D400", "D401", "I100", "I201", "Q000", "E501"]
+
+
+[tool.pytest.ini_options]
+pythonpath = "src"
 statistics = true
 show-source = false
 max-complexity = 8
 max-annotations-complexity = 3
 docstring-convention = 'numpy'
-max-line-length = 120
-ignore = ["E203", "W503", "E704", "S104", "S101", "SIM910", "SIM117", "SIM114", "D100", "D101", "D102", "D103", "D400", "D401", "I100", "I201"]
 inline-quotes = '"'
 docstring-quotes = '"""'
 multiline-quotes = '"""'
