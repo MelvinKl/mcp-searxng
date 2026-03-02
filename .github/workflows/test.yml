@@ -27,13 +27,5 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-root
 
-      - name: Run tests with coverage
+      - name: Run tests
         run: make test
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          file: ./coverage.xml
-          flags: unittests
-          name: codecov-umbrella
-          fail_ci_if_error: false
