@@ -28,11 +28,6 @@ max-complexity = 8
 max-annotations-complexity = 3
 docstring-convention = 'numpy'
 max-line-length = 120
-<<<<<<< HEAD
-ignore = ["E203", "W503", "E704", "S104", "S101", "SIM910", "SIM117", "D100", "D101", "D102", "D103", "D400", "D401", "I100", "I201", "Q000", "E501"]
-=======
-ignore = ["E203", "W503", "E704", "S104", "S101", "SIM910", "SIM117", "SIM114", "D100", "D101", "D102", "D103", "D400", "D401", "I100", "I201"]
->>>>>>> origin/main
 ignore = ["E203", "W503", "E704", "S104", "S101", "SIM910", "SIM117", "SIM114", "D100", "D101", "D102", "D103", "D400", "D401", "I100", "I201", "Q000", "E501"]
 inline-quotes = '"'
 docstring-quotes = '"""'
