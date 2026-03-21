@@ -19,7 +19,7 @@ Remove beads, Agents.md, opencode.json, etc from the repository. Every artifact 
     - `beads/mcp_fsm.txt` is no longer present
     - `beads/simple_fsm.txt` is no longer present
 
-- [ ] 2. Remove the `agents.md` file from the repository root.
+- [x] 2. Remove the `agents.md` file from the repository root.
   - Acceptance Criteria:
     - The `agents.md` file at `/root/git/managed/mcp-searxng/agents.md` is deleted from the filesystem
     - The file is staged for deletion
@@ -30,6 +30,7 @@ Remove beads, Agents.md, opencode.json, etc from the repository. Every artifact 
     - The `tests/test_beads.py` file at `/root/git/managed/mcp-searxng/tests/test_beads.py` (11,844 bytes) is deleted from the filesystem
     - The file is staged for deletion
     - No test files reference beads functionality
+    - Follows same deletion pattern as step 2 (delete from filesystem, stage for deletion)
 
 - [ ] 4. Remove the `.git/opencode` file from the git metadata directory.
   - Acceptance Criteria:
@@ -42,6 +43,8 @@ Remove beads, Agents.md, opencode.json, etc from the repository. Every artifact 
     - Verify `opencode.json` does not exist in the repository root (confirmed not present)
     - Search results for these terms return no tracked files
     - No beads-related branches exist locally
+    - Search for both lowercase and uppercase variants (e.g., "beads"/"Beads", "agent"/"Agent") based on step 2 learnings
+    - Confirm `agents.md` is fully removed as verified in step 2
 
 - [ ] 6. Run `make test` and confirm it succeeds.
   - Acceptance Criteria:
