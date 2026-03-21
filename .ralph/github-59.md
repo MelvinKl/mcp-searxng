@@ -50,7 +50,7 @@ Remove beads, Agents.md, opencode.json, etc from the repository. Every artifact 
       - Verify no test files reference beads functionality as confirmed in step 3
       - Check git metadata directories (like `.git/`) for opencode-related files
 
-  - [ ] 6. Run `make test` and confirm it succeeds.
+   - [x] 6. Run `make test` and confirm it succeeds.
      - Acceptance Criteria:
        - `make test` exits successfully with exit code 0
        - All tests pass
