@@ -38,7 +38,7 @@ Remove beads, Agents.md, opencode.json, etc from the repository. Every artifact 
      - The file is staged for deletion
      - The file is no longer present in `.git/` directory
 
- - [ ] 5. Verify that no other AI-related artifacts remain in the repository.
+  - [x] 5. Verify that no other AI-related artifacts remain in the repository.
     - Acceptance Criteria:
       - No files or directories containing "beads", "agent", or "opencode" exist in the repository (excluding .venv)
       - Verify `opencode.json` does not exist in the repository root (confirmed not present)
@@ -50,8 +50,13 @@ Remove beads, Agents.md, opencode.json, etc from the repository. Every artifact 
       - Verify no test files reference beads functionality as confirmed in step 3
       - Check git metadata directories (like `.git/`) for opencode-related files
 
- - [ ] 6. Run `make test` and confirm it succeeds.
-    - Acceptance Criteria:
-      - `make test` exits successfully with exit code 0
-      - All tests pass
-      - No errors related to missing beads dependencies or deleted files from steps 1-4
+  - [ ] 6. Run `make test` and confirm it succeeds.
+     - Acceptance Criteria:
+       - `make test` exits successfully with exit code 0
+       - All tests pass
+       - No errors related to missing beads dependencies or deleted files from steps 1-4
+       - Tests do not reference removed beads/ directory contents (beads/example.txt, beads/mcp_fsm.bead, beads/mcp_fsm.py, beads/mcp_fsm.txt, beads/simple_fsm.txt)
+       - No test failures related to agents.md removal
+       - No test failures related to tests/test_beads.py removal
+       - No test failures related to .git/opencode file removal
+       - Confirms that all AI-related artifacts (beads, agent, opencode) have been properly removed without breaking test suite
